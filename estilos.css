@@ -1,3 +1,4 @@
+/* ===== Estilo general del sitio ===== */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,12 +6,14 @@ body {
     background-color: #f4f4f4;
 }
 
+/* ===== Encabezado ===== */
 header {
     background-color: #0a6ebd;
     color: white;
     padding: 15px;
 }
 
+/* ===== Menú de navegación ===== */
 nav a {
     color: white;
     margin-right: 15px;
@@ -18,14 +21,60 @@ nav a {
     font-weight: bold;
 }
 
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Contenido principal ===== */
 main {
     padding: 20px;
     background-color: white;
     margin: 20px;
+    border-radius: 5px;
 }
 
+/* ===== Pie de página ===== */
 footer {
     text-align: center;
     padding: 10px;
     background-color: #ddd;
+}
+
+/* ===== Formulario ===== */
+form {
+    max-width: 400px;
+    margin: auto;
+}
+
+/* Etiquetas del formulario */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Campos de entrada */
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Botón */
+button {
+    background-color: #0a6ebd;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+}
+
+/* Efecto al pasar el mouse */
+button:hover {
+    background-color: #084c87;
 }
