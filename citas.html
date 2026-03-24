@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Citas - Hospital San Gabriel</title>
-    <link rel="stylesheet" href="estilos.css">
+
+    <!-- CSS desde GitHub Pages -->
+    <link rel="stylesheet" href="https://IGImCalderon.github.io/Primer-commit---estructura-y-paginas-del-hospital/estilos.css">
 </head>
+
 <body>
 
 <header>
@@ -22,27 +25,73 @@
 <main>
     <h2>Agenda de Citas Médicas</h2>
 
-    <form>
-        <label>Nombre del paciente:</label><br>
-        <input type="text"><br><br>
+    <form onsubmit="return validarFormulario()">
 
-        <label>Especialidad:</label><br>
-        <select>
+        <label>Nombre del paciente:</label>
+        <input type="text" id="nombre">
+
+        <label>Especialidad:</label>
+        <select id="especialidad">
+            <option value="">Seleccione una opción</option>
             <option>Consulta General</option>
             <option>Pediatría</option>
             <option>Medicina Interna</option>
-        </select><br><br>
+        </select>
 
-        <label>Fecha:</label><br>
-        <input type="date"><br><br>
+        <label>Fecha:</label>
+        <input type="date" id="fecha">
 
         <button type="submit">Agendar Cita</button>
+
+        <!-- Mensaje -->
+        <p id="error" style="margin-top:10px;"></p>
+
     </form>
 </main>
 
 <footer>
     <p>&copy; 2026 Hospital San Gabriel</p>
+
+    <!-- HTML -->
+    <p>
+        <a href="https://validator.w3.org/check?uri=referer">
+            <img src="https://www.w3.org/Icons/valid-html5"
+                 alt="HTML válido"
+                 style="border:0;width:88px;height:31px">
+        </a>
+    </p>
+
+    <!-- CSS -->
+    <p>
+        <a href="https://jigsaw.w3.org/css-validator/check/referer">
+            <img src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
+                 alt="CSS válido"
+                 style="border:0;width:88px;height:31px">
+        </a>
+    </p>
 </footer>
+
+<!-- VALIDACIÓN -->
+<script>
+function validarFormulario() {
+
+    let nombre = document.getElementById("nombre").value.trim();
+    let especialidad = document.getElementById("especialidad").value;
+    let fecha = document.getElementById("fecha").value;
+    let mensaje = document.getElementById("error");
+
+    if (nombre === "" || especialidad === "" || fecha === "") {
+        mensaje.textContent = "Todos los campos son obligatorios";
+        mensaje.style.color = "red";
+        return false;
+    }
+
+    mensaje.textContent = "Cita agendada correctamente";
+    mensaje.style.color = "green";
+
+    return false;
+}
+</script>
 
 </body>
 </html>

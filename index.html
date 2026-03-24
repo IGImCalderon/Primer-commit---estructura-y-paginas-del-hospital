@@ -3,41 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <title>Hospital San Gabriel</title>
-    <link rel="stylesheet" href="estilos.css">
+
+    <!-- CSS desde GitHub Pages -->
+    <link rel="stylesheet" href="https://IGImCalderon.github.io/Primer-commit---estructura-y-paginas-del-hospital/estilos.css">
 </head>
+
 <body>
 
-    <header>
-        <h1>Hospital San Gabriel</h1>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="mision.html">Misión</a>
-            <a href="vision.html">Visión</a>
-            <a href="citas.html">Citas</a>
-            <a href="recetas.html">Recetas</a>
-            <a href="contacto.html">Contacto</a>
-        </nav>
-    </header>
+<header>
+    <h1>Hospital San Gabriel</h1>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="mision.html">Misión</a>
+        <a href="vision.html">Visión</a>
+        <a href="citas.html">Citas</a>
+        <a href="recetas.html">Recetas</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+</header>
 
-    <main>
-        <h2>Bienvenidos</h2>
-        <p>
-            El Hospital San Gabriel ofrece servicios médicos de calidad,
-            enfocados en el bienestar y la atención integral de nuestros pacientes.
-        </p>
+<main>
+    <h2>Bienvenidos</h2>
+    <p>
+        El Hospital San Gabriel ofrece servicios médicos de calidad,
+        enfocados en el bienestar y la atención integral de nuestros pacientes.
+    </p>
 
-        <h3>Servicios Médicos</h3>
-        <ul>
-            <li>Consulta General</li>
-            <li>Pediatría</li>
-            <li>Medicina Interna</li>
-            <li>Urgencias</li>
-        </ul>
-    </main>
+    <h3>Servicios Médicos</h3>
+    <ul>
+        <li>Consulta General</li>
+        <li>Pediatría</li>
+        <li>Medicina Interna</li>
+        <li>Urgencias</li>
+    </ul>
 
-    <footer>
-        <p>&copy; 2026 Hospital San Gabriel</p>
-    </footer>
+    <!-- React -->
+    <div id="root"></div>
+</main>
+
+<footer>
+    <p>&copy; 2026 Hospital San Gabriel</p>
+
+    <!-- Badge HTML (CORRECTO HTML5) -->
+    <p>
+        <a href="https://validator.w3.org/check?uri=referer">
+            <img
+                src="https://www.w3.org/Icons/valid-html5"
+                alt="HTML5 válido"
+                style="border:0;width:88px;height:31px">
+        </a>
+    </p>
+
+    <!-- Badge CSS -->
+    <p>
+        <a href="https://jigsaw.w3.org/css-validator/check/referer">
+            <img
+                src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
+                alt="CSS válido"
+                style="border:0;width:88px;height:31px">
+        </a>
+    </p>
+</footer>
+
+<!-- React CDN -->
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<!-- React App -->
+<script type="text/babel">
+
+function App() {
+
+    const [mensaje, setMensaje] = React.useState("");
+
+    return (
+        <div>
+            <h3>Interacción con React</h3>
+
+            <button onClick={() => setMensaje("Bienvenido al Hospital San Gabriel")}>
+                Mostrar mensaje
+            </button>
+
+            <button onClick={() => setMensaje("")}>
+                Ocultar mensaje
+            </button>
+
+            <p>{mensaje}</p>
+        </div>
+    );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+
+</script>
 
 </body>
 </html>
