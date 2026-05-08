@@ -1,103 +1,285 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <title>Hospital San Gabriel</title>
 
-    <!-- CSS desde GitHub Pages -->
-    <link rel="stylesheet" href="https://IGImCalderon.github.io/Primer-commit---estructura-y-paginas-del-hospital/estilos.css">
+    <link rel="stylesheet" href="estilos.css">
+
 </head>
 
 <body>
 
 <header>
+
     <h1>Hospital San Gabriel</h1>
+
     <nav>
+
         <a href="index.html">Inicio</a>
+
         <a href="mision.html">Misión</a>
+
         <a href="vision.html">Visión</a>
+
         <a href="citas.html">Citas</a>
+
         <a href="recetas.html">Recetas</a>
+
         <a href="contacto.html">Contacto</a>
+
     </nav>
+
 </header>
 
 <main>
+
+    <!-- BIENVENIDA -->
+    <h2 id="bienvenida"></h2>
+
+    <button onclick="cerrarSesion()">
+
+        Cerrar Sesión
+
+    </button>
+
+    <br><br>
+
+    <!-- IMAGEN -->
+    <img
+    src="descarga.webp"
+    alt="Hospital"
+    class="imagen-principal">
+
     <h2>Bienvenidos</h2>
+
     <p>
-        El Hospital San Gabriel ofrece servicios médicos de calidad,
-        enfocados en el bienestar y la atención integral de nuestros pacientes.
+
+        El Hospital San Gabriel ofrece
+        servicios médicos de calidad,
+        enfocados en el bienestar y
+        la atención integral de
+        nuestros pacientes.
+
     </p>
 
+    <!-- SERVICIOS -->
     <h3>Servicios Médicos</h3>
-    <ul>
-        <li>Consulta General</li>
-        <li>Pediatría</li>
-        <li>Medicina Interna</li>
-        <li>Urgencias</li>
-    </ul>
 
-    <!-- React -->
+    <div id="servicios"></div>
+
+    <!-- REACT -->
+    <h3>Interacción con React</h3>
+
     <div id="root"></div>
+
+    <hr>
+
+    <!-- PANEL CLIENTE -->
+    <section id="clientePanel">
+
+        <h2>Panel Cliente</h2>
+
+        <p>
+
+            Puedes consultar servicios,
+            ver citas y solicitar atención.
+
+        </p>
+
+        <button>
+            Ver Servicios
+        </button>
+
+        <button>
+            Agendar Cita
+        </button>
+
+    </section>
+
+    <!-- PANEL RECEPCIONISTA -->
+<section id="recepcionistaPanel">
+
+    <h2>Panel Recepcionista</h2>
+
+    <p>
+        Gestión de citas y pacientes.
+    </p>
+
+    <button onclick="window.location.href='registro.html'">
+
+        Registrar Paciente
+
+    </button>
+
+    <button onclick="window.location.href='ver-citas.html'">
+
+        Ver Citas
+
+    </button>
+
+</section>
+
+    <!-- PANEL ADMIN -->
+    <section id="adminPanel">
+
+        <h2>Panel Administrador</h2>
+
+        <button onclick="cargarUsuarios()">
+
+            Ver Usuarios
+
+        </button>
+
+        <br><br>
+
+        <div id="listaUsuarios"></div>
+
+    </section>
+
 </main>
 
 <footer>
-    <p>&copy; 2026 Hospital San Gabriel</p>
 
-    <!-- Badge HTML (CORRECTO HTML5) -->
     <p>
-        <a href="https://validator.w3.org/check?uri=referer">
-            <img
-                src="https://www.w3.org/Icons/valid-html5"
-                alt="HTML5 válido"
-                style="border:0;width:88px;height:31px">
-        </a>
+        &copy; 2026 Hospital San Gabriel
     </p>
 
-    <!-- Badge CSS -->
-    <p>
+    <div>
+
+        <img
+        src="https://www.w3.org/Icons/valid-html5.png"
+        alt="HTML válido">
+
         <a href="https://jigsaw.w3.org/css-validator/check/referer">
+
             <img
-                src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
-                alt="CSS válido"
-                style="border:0;width:88px;height:31px">
+            src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
+            alt="CSS válido">
+
         </a>
-    </p>
+
+    </div>
+
 </footer>
 
-<!-- React CDN -->
+<!-- REACT -->
 <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-<!-- React App -->
+<!-- INDEX JS -->
+<script src="js/index.js"></script>
+
+<!-- REACT -->
 <script type="text/babel">
+
+function Servicios() {
+
+    const lista = [
+
+        "Consulta General",
+
+        "Pediatría",
+
+        "Medicina Interna",
+
+        "Urgencias"
+
+    ];
+
+    return (
+
+        <div className="servicios-container">
+
+            {lista.map((item, index) => (
+
+                <div
+                className="card"
+                key={index}>
+
+                    {item}
+
+                </div>
+
+            ))}
+
+        </div>
+
+    );
+
+}
 
 function App() {
 
-    const [mensaje, setMensaje] = React.useState("");
+    const [mensaje, setMensaje] =
+    React.useState("");
+
+    const [nombre, setNombre] =
+    React.useState("");
 
     return (
-        <div>
-            <h3>Interacción con React</h3>
 
-            <button onClick={() => setMensaje("Bienvenido al Hospital San Gabriel")}>
-                Mostrar mensaje
+        <div>
+
+            <input
+
+                type="text"
+
+                placeholder="Escribe tu nombre"
+
+                value={nombre}
+
+                onChange={(e) =>
+                setNombre(e.target.value)}
+
+            />
+
+            <br /><br />
+
+            <button
+            onClick={() =>
+            setMensaje(
+                "Bienvenido " + nombre
+            )}>
+
+                Saludar
+
             </button>
 
-            <button onClick={() => setMensaje("")}>
-                Ocultar mensaje
+            <button
+            onClick={() =>
+            setMensaje("")}>
+
+                Limpiar
+
             </button>
 
             <p>{mensaje}</p>
+
         </div>
+
     );
+
 }
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+ReactDOM
+.createRoot(
+document.getElementById("servicios"))
+.render(<Servicios />);
+
+ReactDOM
+.createRoot(
+document.getElementById("root"))
+.render(<App />);
 
 </script>
 
 </body>
+
 </html>

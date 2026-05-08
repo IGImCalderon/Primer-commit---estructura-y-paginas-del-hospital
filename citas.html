@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title>Citas - Hospital San Gabriel</title>
 
-    <!-- CSS desde GitHub Pages -->
-    <link rel="stylesheet" href="https://IGImCalderon.github.io/Primer-commit---estructura-y-paginas-del-hospital/estilos.css">
+    <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
@@ -25,72 +24,70 @@
 <main>
     <h2>Agenda de Citas Médicas</h2>
 
-    <form onsubmit="return validarFormulario()">
+    <form id="formCita">
 
         <label>Nombre del paciente:</label>
-        <input type="text" id="nombre">
+        <input type="text" id="nombre" required>
 
         <label>Especialidad:</label>
         <select id="especialidad">
-            <option value="">Seleccione una opción</option>
             <option>Consulta General</option>
             <option>Pediatría</option>
             <option>Medicina Interna</option>
         </select>
 
         <label>Fecha:</label>
-        <input type="date" id="fecha">
+        <input type="date" id="fecha" required>
 
         <button type="submit">Agendar Cita</button>
 
-        <!-- Mensaje -->
-        <p id="error" style="margin-top:10px;"></p>
-
     </form>
+
+    <p id="mensaje"></p>
+
 </main>
 
 <footer>
     <p>&copy; 2026 Hospital San Gabriel</p>
 
-    <!-- HTML -->
-    <p>
+    <div>
         <a href="https://validator.w3.org/check?uri=referer">
-            <img src="https://www.w3.org/Icons/valid-html5"
-                 alt="HTML válido"
-                 style="border:0;width:88px;height:31px">
+            <img src="https://www.w3.org/Icons/valid-html5.png" alt="HTML válido">
         </a>
-    </p>
 
-    <!-- CSS -->
-    <p>
         <a href="https://jigsaw.w3.org/css-validator/check/referer">
-            <img src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
-                 alt="CSS válido"
-                 style="border:0;width:88px;height:31px">
+            <img src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS válido">
         </a>
-    </p>
+    </div>
 </footer>
 
-<!-- VALIDACIÓN -->
 <script>
-function validarFormulario() {
+document.getElementById("formCita").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    let nombre = document.getElementById("nombre").value.trim();
-    let especialidad = document.getElementById("especialidad").value;
-    let fecha = document.getElementById("fecha").value;
-    let mensaje = document.getElementById("error");
+    const datos = {
+        nombre: document.getElementById("nombre").value,
+        especialidad: document.getElementById("especialidad").value,
+        fecha: document.getElementById("fecha").value
+    };
 
-    if (nombre === "" || especialidad === "" || fecha === "") {
-        mensaje.textContent = "Todos los campos son obligatorios";
-        mensaje.style.color = "red";
-        return false;
+    try {
+        const res = await fetch("http://localhost:3000/citas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+        });
+
+        const data = await res.json();
+
+        document.getElementById("mensaje").innerText = data.mensaje;
+
+    } catch (error) {
+        document.getElementById("mensaje").innerText = "Error al conectar con el servidor";
     }
-
-    mensaje.textContent = "Cita agendada correctamente";
-    mensaje.style.color = "green";
-
-    return false;
-}
+});
 </script>
 
 </body>

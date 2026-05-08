@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Ver Citas</title>
+
+    <link rel="stylesheet" href="estilos.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Citas Registradas</h1>
+
+</header>
+
+<main>
+
+    <table border="1" width="100%">
+
+        <thead>
+
+            <tr>
+
+                <th>Paciente</th>
+
+                <th>Especialidad</th>
+
+                <th>Fecha</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="tablaCitas"></tbody>
+
+    </table>
+
+</main>
+
+<script>
+
+const usuario = JSON.parse(
+    localStorage.getItem("usuario")
+);
+
+
+// SOLO ADMIN Y RECEPCIONISTA
+if (
+
+    !usuario ||
+
+    (
+        usuario.rol !== "admin" &&
+
+        usuario.rol !== "recepcionista"
+    )
+
+) {
+
+    window.location.href = "login.html";
+
+}
+
+
+fetch("http://localhost:3000/citas")
+
+.then(res => res.json())
+
+.then(data => {
+
+    let html = "";
+
+    data.forEach(cita => {
+
+        html += `
+        
+        <tr>
+
+            <td>${cita.nombre}</td>
+
+            <td>${cita.especialidad}</td>
+
+            <td>${cita.fecha}</td>
+
+        </tr>
+        
+        `;
+
+    });
+
+    document.getElementById("tablaCitas")
+    .innerHTML = html;
+
+});
+
+</script>
+
+</body>
+</html>

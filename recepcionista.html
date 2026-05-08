@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Recepcionista</title>
+</head>
+
+<body>
+
+<h1>Panel Recepcionista</h1>
+
+<script>
+
+const usuario =
+JSON.parse(localStorage.getItem("usuario"));
+
+if (
+    !usuario ||
+    usuario.rol !== "recepcionista"
+) {
+
+    window.location.href = "login.html";
+
+}
+
+</script>
+
+</body>
+</html>
